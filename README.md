@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Board & Bite
 
-## Getting Started
+Tell it what condition or dietary goal you're managing and get a full week of meals, a
+safe-snack list, and what to avoid — built from a curated food-safety rulebook, not an AI guess.
 
-First, run the development server:
+An optional Gemini layer adds plain-language explanations on top of the plan; the rule-based
+engine that decides what's actually safe to eat works the same with or without it.
+
+## Stack
+
+Next.js (App Router) + TypeScript + Tailwind CSS v4. No accounts, no database — everything
+lives in a single session.
+
+- `src/lib/data/` — the condition, allergy, preference, and food databases the plan is built from
+- `src/lib/planGenerator.ts` — the rule engine that filters and assembles the weekly plan
+- `src/lib/gemini.ts` — optional AI layer for the summary/tips (falls back to templates if unused)
+- `src/app/` — the landing page (`/`) and the planner (`/plan`)
+
+See [PRODUCT.md](PRODUCT.md) for product context and [DESIGN.md](DESIGN.md) for the design system.
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To enable AI-written summaries and tips, copy `.env.local.example` to `.env.local` and add a
+[Gemini API key](https://ai.google.dev/). This is entirely optional — the app is fully
+functional without it.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Disclaimer
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Board & Bite gives general educational guidance, not medical advice or a clinical nutrition
+plan. It's a personal/portfolio project, not a reviewed medical product — check any significant
+dietary change with a doctor or registered dietitian.

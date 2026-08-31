@@ -1,7 +1,8 @@
 {
-  "name": "diet_maker",
+  "name": "board-and-bite",
   "version": "0.1.0",
   "private": true,
+  "description": "Condition-based weekly diet planner: rule-based meal plans with optional AI-written summaries.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
